@@ -1,33 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { Routes, Route } from "react-router-dom";
+import BackgroundVideo from './component/Backgroundvideo.jsx'
+import Navbar from './component/Navbar.jsx'
+import Home from './pages/Home.jsx'
+import Services from './pages/Services.jsx'
 
+import About from './pages/About.jsx'
+import Contact from './pages/Contact.jsx'
+import Pricing from './pages/Pricing.jsx'
+import Gallery from './pages/Gallery.jsx'
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    {/* Background video always behind */}
+      <div className="fixed inset-0 -z-10">
+        <BackgroundVideo />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* Content on top of video */}
+      <div className="relative z-50">
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/gallery" element={<Gallery />} />
+        </Routes>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
